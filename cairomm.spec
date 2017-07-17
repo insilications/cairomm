@@ -4,12 +4,12 @@
 #
 Name     : cairomm
 Version  : 1.12.0
-Release  : 2
+Release  : 3
 URL      : http://ftp.gnome.org/pub/GNOME/sources/cairomm/1.12/cairomm-1.12.0.tar.xz
 Source0  : http://ftp.gnome.org/pub/GNOME/sources/cairomm/1.12/cairomm-1.12.0.tar.xz
 Summary  : C++ wrapper for cairo - postscript support
 Group    : Development/Tools
-License  : GPL-2.0 LGPL-2.0
+License  : LGPL-2.0
 Requires: cairomm-lib
 Requires: cairomm-data
 BuildRequires : pkgconfig(cairo)
@@ -53,7 +53,11 @@ lib components for the cairomm package.
 %setup -q -n cairomm-1.12.0
 
 %build
+export http_proxy=http://127.0.0.1:9/
+export https_proxy=http://127.0.0.1:9/
+export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C
+export SOURCE_DATE_EPOCH=1500321512
 %configure --disable-static
 make V=1  %{?_smp_mflags}
 
@@ -61,10 +65,11 @@ make V=1  %{?_smp_mflags}
 export LANG=C
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
-export no_proxy=localhost
+export no_proxy=localhost,127.0.0.1,0.0.0.0
 make VERBOSE=1 V=1 %{?_smp_mflags} check
 
 %install
+export SOURCE_DATE_EPOCH=1500321512
 rm -rf %{buildroot}
 %make_install
 
@@ -315,10 +320,18 @@ rm -rf %{buildroot}
 /usr/include/cairomm-1.0/cairomm/win32_font.h
 /usr/include/cairomm-1.0/cairomm/win32_surface.h
 /usr/include/cairomm-1.0/cairomm/xlib_surface.h
-/usr/lib64/*.so
 /usr/lib64/cairomm-1.0/include/cairommconfig.h
-/usr/lib64/pkgconfig/*.pc
+/usr/lib64/libcairomm-1.0.so
+/usr/lib64/pkgconfig/cairomm-1.0.pc
+/usr/lib64/pkgconfig/cairomm-ft-1.0.pc
+/usr/lib64/pkgconfig/cairomm-pdf-1.0.pc
+/usr/lib64/pkgconfig/cairomm-png-1.0.pc
+/usr/lib64/pkgconfig/cairomm-ps-1.0.pc
+/usr/lib64/pkgconfig/cairomm-svg-1.0.pc
+/usr/lib64/pkgconfig/cairomm-xlib-1.0.pc
+/usr/lib64/pkgconfig/cairomm-xlib-xrender-1.0.pc
 
 %files lib
 %defattr(-,root,root,-)
-/usr/lib64/*.so.*
+/usr/lib64/libcairomm-1.0.so.1
+/usr/lib64/libcairomm-1.0.so.1.4.0
