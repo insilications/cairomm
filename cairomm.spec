@@ -4,9 +4,9 @@
 #
 Name     : cairomm
 Version  : 1.12.0
-Release  : 3
-URL      : http://ftp.gnome.org/pub/GNOME/sources/cairomm/1.12/cairomm-1.12.0.tar.xz
-Source0  : http://ftp.gnome.org/pub/GNOME/sources/cairomm/1.12/cairomm-1.12.0.tar.xz
+Release  : 4
+URL      : https://download.gnome.org/sources/cairomm/1.12/cairomm-1.12.0.tar.xz
+Source0  : https://download.gnome.org/sources/cairomm/1.12/cairomm-1.12.0.tar.xz
 Summary  : C++ wrapper for cairo - postscript support
 Group    : Development/Tools
 License  : LGPL-2.0
@@ -57,7 +57,7 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C
-export SOURCE_DATE_EPOCH=1500321512
+export SOURCE_DATE_EPOCH=1508275967
 %configure --disable-static
 make V=1  %{?_smp_mflags}
 
@@ -69,7 +69,7 @@ export no_proxy=localhost,127.0.0.1,0.0.0.0
 make VERBOSE=1 V=1 %{?_smp_mflags} check
 
 %install
-export SOURCE_DATE_EPOCH=1500321512
+export SOURCE_DATE_EPOCH=1508275967
 rm -rf %{buildroot}
 %make_install
 
