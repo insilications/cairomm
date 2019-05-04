@@ -4,22 +4,27 @@
 #
 Name     : cairomm
 Version  : 1.12.0
-Release  : 7
+Release  : 8
 URL      : https://download.gnome.org/sources/cairomm/1.12/cairomm-1.12.0.tar.xz
 Source0  : https://download.gnome.org/sources/cairomm/1.12/cairomm-1.12.0.tar.xz
-Summary  : C++ wrapper for cairo - postscript support
+Summary  : C++ bindings for Cairo
 Group    : Development/Tools
 License  : LGPL-2.0
-Requires: cairomm-lib
-Requires: cairomm-data
+Requires: cairomm-data = %{version}-%{release}
+Requires: cairomm-lib = %{version}-%{release}
+Requires: cairomm-license = %{version}-%{release}
+BuildRequires : buildreq-gnome
 BuildRequires : pkgconfig(cairo)
 BuildRequires : pkgconfig(sigc++-2.0)
 
 %description
-cairomm
--------------
-This library provides a C++ interface to cairo.
-Read the file 'INSTALL' for instructions to compile and install the library.
+Building cairomm-1.0 with Visual Studio .NET 2013
+* You will need Visual Studio 2013 (MSVC 12.0).  Building with Visual Studio 2012 or earlier is no longer supported.
+* Install the latest Win32 GTK+ Development files from ftp://ftp.gnome.org/pub/GNOME/binaries/win32/gtk+/ and add
+the paths to headers and import libraries to Visual Studio, if they are not already in $(srcroot)/../vs12/$(Platform).
+* Load the MSVC_Net2013/cairomm.sln solution.
+* Build the entire solution.
+* Run the tests.
 
 %package data
 Summary: data components for the cairomm package.
@@ -32,9 +37,10 @@ data components for the cairomm package.
 %package dev
 Summary: dev components for the cairomm package.
 Group: Development
-Requires: cairomm-lib
-Requires: cairomm-data
-Provides: cairomm-devel
+Requires: cairomm-lib = %{version}-%{release}
+Requires: cairomm-data = %{version}-%{release}
+Provides: cairomm-devel = %{version}-%{release}
+Requires: cairomm = %{version}-%{release}
 
 %description dev
 dev components for the cairomm package.
@@ -51,10 +57,19 @@ doc components for the cairomm package.
 %package lib
 Summary: lib components for the cairomm package.
 Group: Libraries
-Requires: cairomm-data
+Requires: cairomm-data = %{version}-%{release}
+Requires: cairomm-license = %{version}-%{release}
 
 %description lib
 lib components for the cairomm package.
+
+
+%package license
+Summary: license components for the cairomm package.
+Group: Default
+
+%description license
+license components for the cairomm package.
 
 
 %prep
@@ -65,7 +80,14 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C
-export SOURCE_DATE_EPOCH=1526569088
+export SOURCE_DATE_EPOCH=1556993598
+export AR=gcc-ar
+export RANLIB=gcc-ranlib
+export NM=gcc-nm
+export CFLAGS="$CFLAGS -O3 -ffat-lto-objects -flto=4 "
+export FCFLAGS="$CFLAGS -O3 -ffat-lto-objects -flto=4 "
+export FFLAGS="$CFLAGS -O3 -ffat-lto-objects -flto=4 "
+export CXXFLAGS="$CXXFLAGS -O3 -ffat-lto-objects -flto=4 "
 %configure --disable-static
 make  %{?_smp_mflags}
 
@@ -77,8 +99,10 @@ export no_proxy=localhost,127.0.0.1,0.0.0.0
 make VERBOSE=1 V=1 %{?_smp_mflags} check
 
 %install
-export SOURCE_DATE_EPOCH=1526569088
+export SOURCE_DATE_EPOCH=1556993598
 rm -rf %{buildroot}
+mkdir -p %{buildroot}/usr/share/package-licenses/cairomm
+cp COPYING %{buildroot}/usr/share/package-licenses/cairomm/COPYING
 %make_install
 
 %files
@@ -124,7 +148,7 @@ rm -rf %{buildroot}
 /usr/lib64/pkgconfig/cairomm-xlib-xrender-1.0.pc
 
 %files doc
-%defattr(-,root,root,-)
+%defattr(0644,root,root,0755)
 /usr/share/doc/cairomm-1.0/reference/cairomm-1.0.tag
 /usr/share/doc/cairomm-1.0/reference/html/annotated.html
 /usr/share/doc/cairomm-1.0/reference/html/arrowdown.png
@@ -346,3 +370,7 @@ rm -rf %{buildroot}
 %defattr(-,root,root,-)
 /usr/lib64/libcairomm-1.0.so.1
 /usr/lib64/libcairomm-1.0.so.1.4.0
+
+%files license
+%defattr(0644,root,root,0755)
+/usr/share/package-licenses/cairomm/COPYING
