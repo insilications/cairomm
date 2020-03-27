@@ -4,7 +4,7 @@
 #
 Name     : cairomm
 Version  : 1.12.0
-Release  : 8
+Release  : 9
 URL      : https://download.gnome.org/sources/cairomm/1.12/cairomm-1.12.0.tar.xz
 Source0  : https://download.gnome.org/sources/cairomm/1.12/cairomm-1.12.0.tar.xz
 Summary  : C++ bindings for Cairo
