@@ -4,10 +4,10 @@
 #
 Name     : cairomm
 Version  : 1.12.0
-Release  : 9
+Release  : 10
 URL      : https://download.gnome.org/sources/cairomm/1.12/cairomm-1.12.0.tar.xz
 Source0  : https://download.gnome.org/sources/cairomm/1.12/cairomm-1.12.0.tar.xz
-Summary  : C++ bindings for Cairo
+Summary  : C++ wrapper for cairo - postscript support
 Group    : Development/Tools
 License  : LGPL-2.0
 Requires: cairomm-data = %{version}-%{release}
@@ -18,13 +18,10 @@ BuildRequires : pkgconfig(cairo)
 BuildRequires : pkgconfig(sigc++-2.0)
 
 %description
-Building cairomm-1.0 with Visual Studio .NET 2013
-* You will need Visual Studio 2013 (MSVC 12.0).  Building with Visual Studio 2012 or earlier is no longer supported.
-* Install the latest Win32 GTK+ Development files from ftp://ftp.gnome.org/pub/GNOME/binaries/win32/gtk+/ and add
-the paths to headers and import libraries to Visual Studio, if they are not already in $(srcroot)/../vs12/$(Platform).
-* Load the MSVC_Net2013/cairomm.sln solution.
-* Build the entire solution.
-* Run the tests.
+cairomm
+-------------
+This library provides a C++ interface to cairo.
+Read the file 'INSTALL' for instructions to compile and install the library.
 
 %package data
 Summary: data components for the cairomm package.
@@ -74,35 +71,37 @@ license components for the cairomm package.
 
 %prep
 %setup -q -n cairomm-1.12.0
+cd %{_builddir}/cairomm-1.12.0
 
 %build
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
-export LANG=C
-export SOURCE_DATE_EPOCH=1556993598
+export LANG=C.UTF-8
+export SOURCE_DATE_EPOCH=1586222488
+export GCC_IGNORE_WERROR=1
 export AR=gcc-ar
 export RANLIB=gcc-ranlib
 export NM=gcc-nm
 export CFLAGS="$CFLAGS -O3 -ffat-lto-objects -flto=4 "
-export FCFLAGS="$CFLAGS -O3 -ffat-lto-objects -flto=4 "
-export FFLAGS="$CFLAGS -O3 -ffat-lto-objects -flto=4 "
+export FCFLAGS="$FFLAGS -O3 -ffat-lto-objects -flto=4 "
+export FFLAGS="$FFLAGS -O3 -ffat-lto-objects -flto=4 "
 export CXXFLAGS="$CXXFLAGS -O3 -ffat-lto-objects -flto=4 "
 %configure --disable-static
 make  %{?_smp_mflags}
 
 %check
-export LANG=C
+export LANG=C.UTF-8
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 make VERBOSE=1 V=1 %{?_smp_mflags} check
 
 %install
-export SOURCE_DATE_EPOCH=1556993598
+export SOURCE_DATE_EPOCH=1586222488
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/cairomm
-cp COPYING %{buildroot}/usr/share/package-licenses/cairomm/COPYING
+cp %{_builddir}/cairomm-1.12.0/COPYING %{buildroot}/usr/share/package-licenses/cairomm/1679b0cb5406c6e4624f779c02e32985497f7aa7
 %make_install
 
 %files
@@ -373,4 +372,4 @@ cp COPYING %{buildroot}/usr/share/package-licenses/cairomm/COPYING
 
 %files license
 %defattr(0644,root,root,0755)
-/usr/share/package-licenses/cairomm/COPYING
+/usr/share/package-licenses/cairomm/1679b0cb5406c6e4624f779c02e32985497f7aa7
