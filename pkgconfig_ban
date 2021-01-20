@@ -1,3 +1,9 @@
 # This file contains pkgconfig build requirements that get picked up
 # but are undesirable. One entry per line, no whitespace.
 cairo-$cairomm_mod
+cairo-quartz
+cairo-quartz-font
+cairo-quartz-image
+cairo-win32
+cairo-win32-font
+

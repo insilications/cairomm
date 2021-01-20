@@ -1,4 +1,116 @@
-1.12.0 (unstable):
+1.16.0 (stable):
+
+This is the first stable release in the cairomm-1.16 ABI series.
+It is parallel-installable with the cairomm-1.0 ABI.
+
+The tarball for 1.16.0 has been created with 'meson dist'.
+If you build with Autotools from the tarball, please read the relevant
+part of the README file.
+
+Cairo:
+* Add Context::get_source_for_surface()
+  (Kjell Ahlstedt) Issue #5 (Ian Britten)
+* Fix a memory leak in RefPtr
+  (Kjell Ahlstedt) Issue #23
+
+Build:
+* Require C++17
+  (Ting-Wei Lan) Bug #106172
+* Add NMake Makefiles
+  Remove the Visual Studio projects
+  (Chun-wei Fan) Issue #7, #22 merge request !7, !8, !10, !13
+* Add support for building with Meson
+  (Kjell Ahlstedt, Chun-wei Fan) Issue #20, merge request !8
+* Use __declspec(dllexport) when building cairomm on Visual Studio
+  Stop using gendef.exe
+  (Chun-wei Fan) Merge request !5
+* docs/reference/: Update for Doxygen >= 1.8.16
+  (Kjell Ahlstedt)
+
+Tests:
+* Update the source code
+  (Kjell Ahlstedt, Chun-wei Fan) Merge request !1
+* Don't include deprecated Boost header files
+  Fix tests in Autotools builds
+  (Kjell Ahlstedt)
+
+Documentation:
+* README: Update with instructions for building cairomm
+  (Kjell Ahlstedt)
+
+
+1.15.5 (unstable)
+(Distros should probably not package this yet.)
+
+* enums.h: Guard the FT-specific include and the enum with an ifdef.
+  (John Ralls) Bug #100894.
+* Build: configure.ac: Require C++14, because libsigc++-3.0 does.
+  (John Ralls) Bug #100884
+
+1.15.4 (unstable):
+(Distros should probably not package this yet.)
+
+* Use C++11 enum classes instead of old-style enums, and put some enums
+  inside relevant class declarations:
+  - Change Cairo::RegionOverlap enum to Cairo::Region::Overlap.
+  - Change Cairo::PatternType enum to Cairo::Pattern::Type.
+  - Change Cairo::FontWeight enum to Cairo::ToyFontFace::Weight.
+  - Change Cairo::FontSlant enum to Cairo::ToyFontFace::Slant.
+  - Change Cairo::SurfaceType enum to Cairo::Surface::Type.
+  - Change Cairo::HintMetrics enum to Cairo::FontOptions::HintMetrics.
+  - Change Cairo::HintStyle enum to Cairo::FontOptions::HintStyle.
+  - Change Cairo::Filter enum to Cairo::SurfacePattern::Filter.
+  - Change Cairo::Extend enum to Cairo::Pattern::Extend.
+  - Change Cairo::Format enum to Cairo::Surface::Format.
+  - Change Cairo::DeviceType enum to Cairo::Device::DeviceType.
+  - Change Cairo::LineJoin enum to Cairo::Context::LineJoin.
+  - Change Cairo::LineCap enum to Cairo::Context::LineCap.
+  - Change Cairo::FillRule enum to Cairo::Context::FillRule.
+  - Change Cairo::Operator enum to Cairo::Context::Operator.
+  (Murray Cumming)
+* Build: Win32 / Visual Studio builds:
+  - Require Visual Studio 2017
+  - Remove leftovers from removing deprecated Win32::create()
+  (Chun-wei Fan) Bug #100210
+
+1.15.3 (unstable):
+(Distros should probably not package this yet.)
+
+* RefPtr: This is now an alias for std::shared_ptr<>.
+  These should be instatiated via
+  Cairo::make_refptr_for_instance(), though that should
+  never be necessary anyway outside of the cairomm
+  implementation itself.
+
+1.15.2 (unstable):
+(Distros should probably not package this yet.)
+
+* Remove deprecated API.
+  (Murray Cumming)
+
+1.15.1 (unstable):
+
+* First release of the cairomm-1.16 API/ABI that installs
+  in parallel with cairomm-1.0.
+  This uses libsigc++-3.0 instead of libsigc++-2.0.
+
+1.13.1 (unstable):
+
+* Added RecordingSurface, wrapping cairo_recording_surface.
+  (Jason Rhinelander) Bug #121359
+
+1.12.2 (stable):
+
+* Remove new API that was not meant to be added in 1.12.1.
+
+1.12.1 (stable):
+
+* C++11: Use nullptr instead of 0.
+* C++11: Use override keyword on destructors.
+* C++11: Make operator bool() explicit.
+  (Murray Cumming)
+
+1.12.0 (stable):
 
 * Cairo::RefPtr: Add move constructors and move operator=().
   (Murray Cumming)
