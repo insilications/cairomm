@@ -1,12 +1,6 @@
-1.16.0
+1.16.1
 boost-dev
 doxygen
 graphviz
 libxslt-bin
-pkgconfig(cairo-quartz)
-pkgconfig(cairo-quartz-font)
-pkgconfig(cairo-quartz-image)
-pkgconfig(cairo-win32)
-pkgconfig(cairo-win32-font)
 pkgconfig(mm-common-libstdc++)
-pkgconfig(sigc++-3.0)
