@@ -1,5 +1,6 @@
 PKG_NAME := cairomm
-URL = https://www.cairographics.org/releases/cairomm-1.16.1.tar.xz
+URL = https://gitlab.freedesktop.org/cairo/cairomm.git
 ARCHIVES = 
+ARCHIVES_GIT = 
 
 include ../common/Makefile.common

@@ -1,0 +1,3 @@
+-Dbuild-documentation=false
+-Dbuild-examples=false
+-Dbuild-tests=true
