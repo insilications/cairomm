@@ -456,6 +456,10 @@ libcairomm-1.16.so.1:_ZN5Cairo9PsSurfaceC2EP14_cairo_surfaceb
 libcairomm-1.16.so.1:_ZN5Cairo9PsSurfaceD0Ev
 libcairomm-1.16.so.1:_ZN5Cairo9PsSurfaceD1Ev
 libcairomm-1.16.so.1:_ZN5Cairo9PsSurfaceD2Ev
+libcairomm-1.16.so.1:_ZN5Cairo9SaveGuardC1ERKSt10shared_ptrINS_7ContextEE
+libcairomm-1.16.so.1:_ZN5Cairo9SaveGuardC2ERKSt10shared_ptrINS_7ContextEE
+libcairomm-1.16.so.1:_ZN5Cairo9SaveGuardD1Ev
+libcairomm-1.16.so.1:_ZN5Cairo9SaveGuardD2Ev
 libcairomm-1.16.so.1:_ZN5CairomlERKNS_6MatrixES2_
 libcairomm-1.16.so.1:_ZN9__gnu_cxx15__concat_size_tEPcmm
 libcairomm-1.16.so.1:_ZN9__gnu_cxx15__snprintf_liteEPcmPKcP13__va_list_tag
